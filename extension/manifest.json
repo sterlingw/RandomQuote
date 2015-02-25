@@ -1,0 +1,12 @@
+{
+    "name": "Random Quote",
+    "version": "0.2",
+    "manifest_version": 2,
+    "description" : "Replaces New Tab page with an interesting quote.",
+    "offline_enabled": true,
+    "chrome_url_overrides" : {
+        "newtab": "random.html"
+    }
+
+
+}
