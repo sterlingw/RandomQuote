@@ -116,7 +116,6 @@ window.onload = function(){
 
     var random = Math.floor(Math.random()*(quote.length));
     var quoteBody = document.getElementById("quote__body");
-    console.log(quoteBody);
     
     quoteBody.innerHTML = quote[random];
 
