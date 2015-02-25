@@ -5,7 +5,7 @@
     "description" : "Replaces New Tab page with an interesting quote.",
     "offline_enabled": true,
     "chrome_url_overrides" : {
-        "newtab": "random.html"
+        "newtab": "app.html"
     }
 
 

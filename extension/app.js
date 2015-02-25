@@ -1,6 +1,7 @@
-$(document).ready(function(){
+window.onload = function(){
 
-    var quote = new Array();
+    var quote = [];
+
     quote[0] = 'Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time. <span>-Thomas A. Edison</span>';
     quote.push('You are never too old to set another goal or to dream a new dream. <span>-C.S. Lewis</span>');
     quote.push('Try not to become a man of success but a man of value. <span>-Albert Einstein</span>');
@@ -113,12 +114,10 @@ $(document).ready(function(){
     quote.push("The only way to do great work is to love what you do. <span>–Steve Jobs</span>");
 
 
-    var randomQuote = Math.floor(Math.random()*(quote.length));
+    var random = Math.floor(Math.random()*(quote.length));
+    var quoteBody = document.getElementById("quote__body");
+    console.log(quoteBody);
+    
+    quoteBody.innerHTML = quote[random];
 
-    function printQuote(){
-        $("p").append(quote[randomQuote]);
-    }
-
-    printQuote();
-
-});
+};
