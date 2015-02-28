@@ -114,9 +114,12 @@ window.onload = function(){
     quote.push("The only way to do great work is to love what you do. <span>–Steve Jobs</span>");
 
 
-    var random = Math.floor(Math.random()*(quote.length));
-    var quoteBody = document.getElementById("quote__body");
-    
-    quoteBody.innerHTML = quote[random];
+    var randomQuote = Math.floor(Math.random()*(quote.length));  
+    var images = ["1.jpeg", "2.jpeg", "3.jpg", "4.jpeg", "5.jpeg"];
+    var randomImage = Math.floor(Math.random()*(images.length));
+
+    document.getElementById("quote__body").innerHTML = quote[randomQuote];
+    document.body.style.backgroundImage = "url(img/" + images[randomImage] + ")";
+
 
 };
