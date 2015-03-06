@@ -5,13 +5,32 @@
 
 
 
-/* Choose and set a random image as the body background: */
 window.onload = function(){
-    var images = ["1.jpeg", "2.jpeg", "3.jpg", "4.jpeg", "5.jpeg"],
-        randomImage = Math.floor(Math.random()*(images.length));
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://natgeoapi.herokuapp.com/api/dailyphoto', true);
+    xhr.send(null);
 
-    document.body.style.backgroundImage = "url(img/" + images[randomImage] + ")";
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+            var response = JSON.parse(xhr.responseText),
+                imageUrl = response.src;
+
+            if (response.src) {
+                if (response.src.substring(0, 2) == "//") imageUrl = "http:" + response.src;
+
+                /* Set the Image of the Day as the body background: */
+                document.body.style.backgroundImage = "url(" + imageUrl +")";
+            } else {
+                /* Choose and set a random image as the body background: */
+                var images = ["1.jpeg", "2.jpeg", "3.jpg", "4.jpeg", "5.jpeg"],
+                    randomImage = Math.floor(Math.random()*(images.length));
+
+                document.body.style.backgroundImage = "url(img/" + images[randomImage] + ")";
+            }
+        }
+    }
 };
+
 
 
 /* Choose and set a random quote: */
