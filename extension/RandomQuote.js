@@ -12,35 +12,14 @@ var RandomQuote = function () {
      * 
      */
     this.init = function () {
-        that.setRandomQuote(that.getQuotes());
+        that.setQuote(that.getQuoteFromLocal(that.getQuotes()));
 
-        if (that.checkForInternetConnection()) {
-            console.log(true);
+        if (/* navigator.onLine */ false) {
             that.getImageFromAPI();
         } else {
-            console.log(false);
             that.setImage(that.getImageFromLocal());
         }
 
-    };
-
-
-    /**
-     * Returns true or false if there's an internet connection.
-     */
-    that.checkForInternetConnection = function () {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', "http://example.com", true);
-        try {
-            xhr.send();
-            if (xhr.status >= 200 && xhr.status < 304) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (e) {
-            return false;
-        }
     };
 
 
@@ -82,15 +61,23 @@ var RandomQuote = function () {
      */
     this.getImageFromLocal = function () {
         var images = ["1.jpeg", "2.jpeg", "3.jpg", "4.jpeg", "5.jpeg"];
-        return "img/" + Math.floor(Math.random()*(images.length));
+        return "img/" + images[Math.floor(Math.random()*(images.length))];
     };
 
 
     /**
-     * Gets and sets a random quote.
+     * Sets a given quote in the DOM.
      */
-    this.setRandomQuote = function (quotes) {
-        document.getElementById("quote__body").innerHTML = quotes[Math.floor(Math.random()*(quotes.length))];
+    this.setQuote = function (quote) {
+        document.getElementById("quote__body").innerHTML = quote;
+    };
+
+
+    /**
+     * Gets a random quote from the local list of quotes.
+     */
+    this.getQuoteFromLocal = function (quotes) {
+        return quotes[Math.floor(Math.random()*(quotes.length))];
     };
 
 
