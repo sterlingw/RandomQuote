@@ -18,7 +18,6 @@ var RandomQuote = function () {
         var img = document.getElementById("image");
 
         img.onError = function () {
-            console.log("ON ERROR");
             this.src = that.setImage(that.getImage());
         };
 
