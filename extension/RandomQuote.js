@@ -1,27 +1,51 @@
 /***
- * RandomQuote Chrome Extension
- *
- * @todo Add Random Background for failed XHR.
+ * RandomQuote
  */
-
 var RandomQuote = function () {
     var that = this;
+
+    this.apiUrl = "http://www.splashbase.co/api/v1/images/random?images_only=true";
 
 
     /**
      * 
      */
     this.init = function () {
-        that.setQuote(that.getQuoteFromLocal(that.getQuotes()));
-        that.setImage(that.getImageFromLocal());
+        var url = that.getImage();
+
+        that.setQuote(that.getQuote(that.getQuotes()));
+
+        if (!navigator.isOnline) {
+            that.getImageFromApi(function(response){
+                if (response.large_url) {
+                    url = response.large_url;
+                } else if (response) {
+                    url = response.url;
+                }
+
+                that.setImage(url);
+            });
+        } else {
+            that.setImage(url);
+        }
     };
 
 
     /**
-     * Sets an image from the API.
+     * Updates the <img> tag to display a given image URL.
+     *
+     * @param {string} imageUrl - path to image
      */
     this.setImage = function (imageUrl) {
-        return document.getElementById("image").src = imageUrl;
+        if (!imageUrl) { throw new Error("An imageUrl is required."); }
+        var img = document.getElementById("image");
+
+        img.onError = function () {
+            console.log("ON ERROR");
+            this.src = that.setImage(that.getImage());
+        };
+
+        return img.src = imageUrl;
     };
 
 
@@ -30,16 +54,40 @@ var RandomQuote = function () {
      * 
      * @return {string} image path
      */
-    this.getImageFromLocal = function () {
+    this.getImage = function () {
         var images = ["1.jpeg", "2.jpeg", "3.jpg", "4.jpeg", "5.jpeg"];
-
         return "img/" + images[Math.floor(Math.random()*(images.length))];
     };
 
 
     /**
-     * Sets a given quote in the DOM.
-     *
+     * @callback - API response or false.
+     */
+    this.getImageFromApi = function (cb) {
+        if (typeof cb != 'function') { throw new Error("A callback function is required."); }
+        var xhr = new XMLHttpRequest();
+
+        xhr.open("GET", that.apiUrl, true);
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    cb(JSON.parse(xhr.responseText));
+                } else {
+                    cb(false);
+                }
+            }
+        }
+
+        xhr.onError = function(err) {
+            cb(false);
+        };
+
+        xhr.send();
+    };
+
+
+    /**
      * @param {string} quote
      */
     this.setQuote = function (quote) {
@@ -48,18 +96,16 @@ var RandomQuote = function () {
 
 
     /**
-     * Gets a random quote from the local list of quotes.
-     * 
      * @param {array} quotes
      * @return {string} quote
      */
-    this.getQuoteFromLocal = function (quotes) {
+    this.getQuote = function (quotes) {
         return quotes[Math.floor(Math.random()*(quotes.length))];
     };
 
 
     /**
-     * 
+     * @return {array} quotes
      */
     this.getQuotes = function () {
         return [
