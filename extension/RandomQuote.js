@@ -8,33 +8,10 @@ var RandomQuote = function () {
 
 
     /**
-     * 
-     */
-    this.init = function () {
-        var url = that.getImage();
-
-        that.setQuote(that.getQuote(that.getQuotes()));
-
-        if (!navigator.isOnline) {
-            that.getImageFromApi(function(response){
-                if (response.large_url) {
-                    url = response.large_url;
-                } else if (response) {
-                    url = response.url;
-                }
-
-                that.setImage(url);
-            });
-        } else {
-            that.setImage(url);
-        }
-    };
-
-
-    /**
      * Updates the <img> tag to display a given image URL.
      *
      * @param {string} imageUrl - path to image
+     * @return {object} image element object
      */
     this.setImage = function (imageUrl) {
         if (!imageUrl) { throw new Error("An imageUrl is required."); }
@@ -45,7 +22,9 @@ var RandomQuote = function () {
             this.src = that.setImage(that.getImage());
         };
 
-        return img.src = imageUrl;
+        img.src = imageUrl
+
+        return img;
     };
 
 
@@ -89,17 +68,24 @@ var RandomQuote = function () {
 
     /**
      * @param {string} quote
+     * @return {object} quote element object
      */
     this.setQuote = function (quote) {
-        document.getElementById("quote").innerHTML = quote;
+        if (!quote) { throw new Error("A quote is required."); }
+        var element = document.getElementById("quote");
+
+        element.innerHTML = quote;
+
+        return element;
     };
 
 
     /**
      * @param {array} quotes
-     * @return {string} quote
+     * @return {string} quote string.
      */
     this.getQuote = function (quotes) {
+        if (!quotes) { throw new Error("An array of quotes is required."); }
         return quotes[Math.floor(Math.random()*(quotes.length))];
     };
 
