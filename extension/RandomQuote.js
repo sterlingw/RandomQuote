@@ -13,13 +13,7 @@ var RandomQuote = function () {
      */
     this.init = function () {
         that.setQuote(that.getQuoteFromLocal(that.getQuotes()));
-
-        if (/* navigator.onLine */ false) {
-            that.getImageFromAPI();
-        } else {
-            that.setImage(that.getImageFromLocal());
-        }
-
+        that.setImage(that.getImageFromLocal());
     };
 
 
@@ -27,54 +21,37 @@ var RandomQuote = function () {
      * Sets an image from the API.
      */
     this.setImage = function (imageUrl) {
-        document.body.style.backgroundImage = "url(" + imageUrl + ")";
-    };
-
-
-    /**
-     * Check if the image from the API is good.
-     */
-    this.getImageFromAPI = function (sucessCallback) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'https://natgeoapi.herokuapp.com/api/dailyphoto', true);
-        xhr.send(null);
-
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4) {
-                var response = JSON.parse(xhr.responseText),
-                    imageUrl = response.src;
-
-                if (response.src) {
-                    // Check if the image path starts with "//", if so set it to "http://".
-                    if (response.src.substring(0, 2) == "//") imageUrl = "http:" + response.src;
-                        that.setImage(imageUrl);
-                } else {
-                    that.setImage(that.getImageFromLocal());
-                }
-            }
-        }
+        return document.getElementById("image").src = imageUrl;
     };
 
 
     /**
      * Gets and a random background image.
+     * 
+     * @return {string} image path
      */
     this.getImageFromLocal = function () {
         var images = ["1.jpeg", "2.jpeg", "3.jpg", "4.jpeg", "5.jpeg"];
+
         return "img/" + images[Math.floor(Math.random()*(images.length))];
     };
 
 
     /**
      * Sets a given quote in the DOM.
+     *
+     * @param {string} quote
      */
     this.setQuote = function (quote) {
-        document.getElementById("quote__body").innerHTML = quote;
+        document.getElementById("quote").innerHTML = quote;
     };
 
 
     /**
      * Gets a random quote from the local list of quotes.
+     * 
+     * @param {array} quotes
+     * @return {string} quote
      */
     this.getQuoteFromLocal = function (quotes) {
         return quotes[Math.floor(Math.random()*(quotes.length))];
@@ -82,7 +59,7 @@ var RandomQuote = function () {
 
 
     /**
-     * List of quotes to default to if the quote API is unavailable.
+     * 
      */
     this.getQuotes = function () {
         return [
