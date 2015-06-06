@@ -137,11 +137,19 @@ var RandomQuote = function () {
 
 
     function init() {
-        self.setQuote();
-
-        // set background color
-        document.body.style.background = "#" + self.getRandom(self.colors);
+    
     }
+
+
+    /** 
+     * @return
+     */
+    self.setBackgroundColor = function (hex) {
+        if (!hex) {
+            throw new Error("A color hex is required.");
+        }
+        return document.body.style.background = "#" + hex;
+    };
 
 
     /** 
@@ -166,7 +174,11 @@ var RandomQuote = function () {
             quote = self.getRandom(self.quotes);
         }
 
-        element.innerHTML = quote;
+        if (element) {
+            element.innerHTML = quote;
+        } else {
+            throw new Error("The element with id 'quote' is not defined.");
+        }
 
         return element;
     };
