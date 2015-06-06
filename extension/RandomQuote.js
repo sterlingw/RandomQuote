@@ -1,10 +1,17 @@
 /***
- * RandomQuote
+ * 
  */
 var RandomQuote = function () {
-    var that = this;
+    var self = this;
 
     this.apiUrl = "http://www.splashbase.co/api/v1/images/random?images_only=true";
+
+
+    function init() {
+        self.setQuote();
+
+        // Set background
+    }
 
 
     /**
@@ -13,12 +20,12 @@ var RandomQuote = function () {
      * @param {string} imageUrl - path to image
      * @return {object} image element object
      */
-    this.setImage = function (imageUrl) {
+    self.setImage = function (imageUrl) {
         if (!imageUrl) { throw new Error("An imageUrl is required."); }
         var img = document.getElementById("image");
 
         img.onError = function () {
-            this.src = that.setImage(that.getImage());
+            this.src = self.setImage(self.getImage());
         };
 
         img.src = imageUrl
@@ -32,7 +39,7 @@ var RandomQuote = function () {
      * 
      * @return {string} image path
      */
-    this.getImage = function () {
+    self.getImage = function () {
         var images = ["1.jpeg", "2.jpeg", "3.jpg", "4.jpeg", "5.jpeg"];
         return "img/" + images[Math.floor(Math.random()*(images.length))];
     };
@@ -41,11 +48,11 @@ var RandomQuote = function () {
     /**
      * @callback - API response or false.
      */
-    this.getImageFromApi = function (cb) {
+    self.getImageFromApi = function (cb) {
         if (typeof cb != 'function') { throw new Error("A callback function is required."); }
         var xhr = new XMLHttpRequest();
 
-        xhr.open("GET", that.apiUrl, true);
+        xhr.open("GET", self.apiUrl, true);
 
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4) {
@@ -69,9 +76,12 @@ var RandomQuote = function () {
      * @param {string} quote
      * @return {object} quote element object
      */
-    this.setQuote = function (quote) {
-        if (!quote) { throw new Error("A quote is required."); }
+    self.setQuote = function (quote) {
         var element = document.getElementById("quote");
+
+        if (!quote) { 
+            quote = self.getQuote();
+        }
 
         element.innerHTML = quote;
 
@@ -80,11 +90,15 @@ var RandomQuote = function () {
 
 
     /**
+     * Gets a random quote from a given array of quotes, or defaults to using the built in quotes.
+     * 
      * @param {array} quotes
      * @return {string} quote string.
      */
-    this.getQuote = function (quotes) {
-        if (!quotes) { throw new Error("An array of quotes is required."); }
+    self.getQuote = function (quotes) {
+        if (!quotes) { 
+            quotes = self.getQuotes();
+        }
         return quotes[Math.floor(Math.random()*(quotes.length))];
     };
 
@@ -92,7 +106,7 @@ var RandomQuote = function () {
     /**
      * @return {array} quotes
      */
-    this.getQuotes = function () {
+    self.getQuotes = function () {
         return [
             'Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time. <span>-Thomas A. Edison</span>',
             'You are never too old to set another goal or to dream a new dream. <span>-C.S. Lewis</span>',
@@ -171,7 +185,6 @@ var RandomQuote = function () {
             'You take your life in your own hands, and what happens? A terrible thing, no one to blame. <span>–Erica Jong</span>',
             'What’s money? A man is a success if he gets up in the morning and goes to bed at night and in between does what he wants to do. <span>–Bob Dylan</span>',
             'I didn’t fail the test. I just found 100 ways to do it wrong. <span>–Benjamin Franklin</span>',
-            'In order to succeed, your desire for success should be greater than your fear of failure. <span>–Bill Cosby</span>',
             'A person who never made a mistake never tried anything new. <span>-Albert Einstein</span>',
             'The person who says it cannot be done should not interrupt the person who is doing it. <span>–Chinese Proverb</span>',
             "The person who says it cannot be done should not interrupt the person who is doing it. <span>–Chinese Proverb</span>",
@@ -208,5 +221,6 @@ var RandomQuote = function () {
     };
 
 
-    return this;
+    init();
+    return self;
 };
