@@ -1,6 +1,6 @@
 {
     "name": "Random Quote",
-    "version": "2.0.1",
+    "version": "3.0.0",
     "manifest_version": 2,
     "description" : "See a random quote when you open a new tab.",
     "offline_enabled": true,
