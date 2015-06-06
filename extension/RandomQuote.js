@@ -4,7 +4,6 @@
 var RandomQuote = function () {
     var self = this;
 
-    self.apiUrl = "http://www.splashbase.co/api/v1/images/random?images_only=true";
 
     self.colors = [
         "F44336",
@@ -24,7 +23,6 @@ var RandomQuote = function () {
         "FF5722",
         "607D8B"
     ];
-
     self.quotes = [
         'Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time. <span>-Thomas A. Edison</span>',
         'You are never too old to set another goal or to dream a new dream. <span>-C.S. Lewis</span>',
@@ -137,14 +135,6 @@ var RandomQuote = function () {
         "The only way to do great work is to love what you do. <span>–Steve Jobs</span>"
     ];
 
-    self.localImages = [
-        "1.jpeg", 
-        "2.jpeg", 
-        "3.jpg", 
-        "4.jpeg", 
-        "5.jpeg"
-    ];
-
 
     function init() {
         self.setQuote();
@@ -162,66 +152,6 @@ var RandomQuote = function () {
             throw new Error("An array is required.");
         }
         return array[Math.floor(Math.random()*(array.length))];
-    };
-
-
-    /**
-     * Updates the <img> tag to display a given image URL.
-     *
-     * @param {string} imageUrl - path to image
-     * @return {object} image element object
-     */
-    self.setImage = function (imageUrl) {
-        if (!imageUrl) { 
-            throw new Error("An imageUrl is required."); 
-        }
-        var img = document.getElementById("image");
-
-        img.onError = function () {
-            this.src = self.setImage(self.getImage());
-        };
-
-        img.src = imageUrl
-
-        return img;
-    };
-
-
-    /**
-     * Gets and a random background image.
-     * 
-     * @return {string} image path
-     */
-    self.getImage = function () {
-        var images = ["1.jpeg", "2.jpeg", "3.jpg", "4.jpeg", "5.jpeg"];
-        return "img/" + self.getRandom(self.localImages);
-    };
-
-
-    /**
-     * @callback - API response or false.
-     */
-    self.getImageFromApi = function (cb) {
-        if (typeof cb != 'function') { throw new Error("A callback function is required."); }
-        var xhr = new XMLHttpRequest();
-
-        xhr.open("GET", self.apiUrl, true);
-
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                    cb(JSON.parse(xhr.responseText));
-                } else {
-                    cb(false);
-                }
-            }
-        }
-
-        xhr.onError = function(err) {
-            cb(false);
-        };
-
-        xhr.send();
     };
 
 
