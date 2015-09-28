@@ -4,7 +4,7 @@ Chrome Extension that replaces new tabs with a random quote.
 # Download
 [Download on the Chrome Web store.](https://chrome.google.com/webstore/detail/random-quote/hhompecpighdhclapocgaaadjnmgahoi)
 
-# Development
+## Development
 ### Running the extension
 1. `npm install`
 2. In Chrome, go to `chrome://extensions`
