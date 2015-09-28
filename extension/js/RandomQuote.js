@@ -1,5 +1,5 @@
 /**
- * 
+ * @class
  */
 function RandomQuote(element) {
     this.element = element;
@@ -118,8 +118,8 @@ RandomQuote.prototype.quotes = [
 ];
 
 /** 
- * 
- * @return - random item from the given array.
+ * @private
+ * @return - Random item from the given array.
  */
 RandomQuote.prototype._getRandom = function(array) {
     if (typeof array === 'undefined') throw new Error("An array is required.");
@@ -127,14 +127,15 @@ RandomQuote.prototype._getRandom = function(array) {
 };
 
 /** 
- * @return - random quote.
+ * @return {string} Random quote.
  */
 RandomQuote.prototype.getRandomQuote = function() {
     return this._getRandom(this.quotes);
 };
 
 /**
- * @return {string}
+ * Set a random quote.
+ * @return {string} quote
  */
 RandomQuote.prototype.setQuote = function() {
     var quote = this.getRandomQuote();

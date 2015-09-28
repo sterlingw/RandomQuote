@@ -1,5 +1,5 @@
 /**
- *
+ * @class
  */
 function BackgroundColor(element) {
     this.element = element;
@@ -25,7 +25,8 @@ BackgroundColor.prototype.colors = [
 ];
 
 /**
- *
+ * @private
+ * @return - Random item from the given array.
  */
 BackgroundColor.prototype._getRandom = function(array) {
     if (typeof array === 'undefined') throw new Error("An array is required.");
@@ -33,14 +34,14 @@ BackgroundColor.prototype._getRandom = function(array) {
 };
 
 /**
- *
+ * @return {string} - Random color hex.
  */
 BackgroundColor.prototype.getRandomColor = function() {
     return ('#' + this._getRandom(this.colors));
 };
 
 /** 
- * @return
+ * @return {string} - Hex that was set as the background color.
  */
 BackgroundColor.prototype.setBackgroundColor = function() {    
     var color = this.getRandomColor();

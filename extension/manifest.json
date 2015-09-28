@@ -7,6 +7,4 @@
     "chrome_url_overrides" : {
         "newtab": "app.html"
     }
-
-
 }
