@@ -14,3 +14,6 @@ Chrome Extension that replaces new tabs with a random quote.
 
 ### Running tests
 `npm test`
+
+## License
+MIT. Copyright (c) [Sterling Whitley](http://sterlingw.com)
