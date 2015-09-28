@@ -1,8 +1,7 @@
 /***
  * 
- *
  */
-var rq = new RandomQuote();
+var rq = new RandomQuote(document.getElementById('quote'));
 
 rq.setQuote();
 

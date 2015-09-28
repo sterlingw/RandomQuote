@@ -2,7 +2,7 @@
  * 
  */
 function RandomQuote(element) {
-    
+    this.element = element;
 };
 
 RandomQuote.prototype.colors = [
@@ -137,37 +137,36 @@ RandomQuote.prototype.quotes = [
 ];
 
 /** 
- * @return
- */
-RandomQuote.prototype.setBackgroundColor = function (hex) {
-    if (typeof hex === 'undefined') throw new Error("A color hex is required.");
-    return document.body.style.background = "#" + hex;
-};
-
-/** 
+ * 
  * @return - random item from the given array.
  */
-RandomQuote.prototype.getRandom = function (array) {
+RandomQuote.prototype._getRandom = function(array) {
     if (typeof array === 'undefined') throw new Error("An array is required.");
     return array[Math.floor(Math.random()*(array.length))];
 };
 
-/**
- * @param {string} quote
- * @return {object} quote element object
+/** 
+ * @return - random quote.
  */
-RandomQuote.prototype.setQuote = function (quote) {
-    var element = document.getElementById("quote");
+RandomQuote.prototype.getRandomQuote = function() {
+    return this._getRandom(this.quotes);
+};
 
-    if (typeof quote === 'undefined') { 
-        quote = this.getRandom(this.quotes);
-    }
+/**
+ * @return {string}
+ */
+RandomQuote.prototype.setQuote = function() {
+    var quote = this.getRandomQuote();
 
-    if (element) {
-        element.innerHTML = quote;
-    } else {
-        throw new Error("The element with id 'quote' is not defined.");
-    }
+    this.element.innerHTML = quote;
 
-    return element;
+    return quote;
+};
+
+/** 
+ * @return
+ */
+RandomQuote.prototype.setBackgroundColor = function(hex) {
+    if (typeof hex === 'undefined') throw new Error("A color hex is required.");
+    return document.body.style.background = "#" + hex;
 };

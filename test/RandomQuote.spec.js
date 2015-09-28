@@ -1,8 +1,18 @@
-
 describe("RandomQuote", function() {
-    var rq = new RandomQuote();
+    var rq;
+    beforeEach(function(){
+        var element = document.createElement('div');
+        element.setAttribute('div', "quote");
 
-    describe("quotes", function() {
+        rq = new RandomQuote(element);
+    });
+
+    describe('constructor', function(){
+        it('should define property element', function(){
+            expect(rq.element).toBeDefined();
+        });
+    });
+    describe("property quotes", function() {
         it("should contain a quote from Thomas Edison", function() {
             expect(rq.quotes).toContain("Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time. <span>-Thomas A. Edison</span>");
         });
@@ -10,15 +20,32 @@ describe("RandomQuote", function() {
             expect(rq.quotes).not.toContain("");
         });
     });
-    describe("setBackgroundColor()", function() {
-        it("should throw an error", function() {
-            expect(function(){ rq.setBackgroundColor() }).toThrowError();
+    describe('#_getRandom', function(){
+        it('should return an item from the given array', function(){
+            var arr = ['item1', 'item2', 'item3'];
+            expect(arr).toContain(rq._getRandom(arr));
         });
-        it("should change the body background color", function() {
-            var oldBackground = document.body.style.background,
-                newBackground = rq.setBackgroundColor(rq.getRandom(rq.colors));
+    });
+    describe('#getRandom', function(){
+        it('should call #_getRandom', function(){
+            spyOn(rq, '_getRandom');
+            rq.getRandomQuote();
+            expect(rq._getRandom).toHaveBeenCalled();
+        });
+        it('should return an item from the quotes array', function(){
+            expect(rq.quotes).toContain(rq.getRandomQuote());
+        });
+    });
+    describe('#setQuote', function(){
+        it('should return a quote', function(){
+            expect(rq.quotes).toContain(rq.setQuote());
+        });
+        it('should update the elements innerHTML', function(){
+            var old = rq.element.innerHTML;
 
-            expect(oldBackground != newBackground).toBe(true);
+            rq.setQuote();
+
+            expect(rq.element.innerHTML).not.toBe(old);
         });
     });
 });
