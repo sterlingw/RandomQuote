@@ -1,0 +1,28 @@
+{
+  "name": "RandomQuote",
+  "version": "1.0.0",
+  "description": "Chrome Extension that replaces new tabs with a random quote.",
+  "main": "index.js",
+  "directories": {
+    "test": "/test"
+  },
+  "scripts": {
+    "test": "./node_modules/karma/bin/karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sterlingw/RandomQuote.git"
+  },
+  "author": "Sterling Whitley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sterlingw/RandomQuote/issues"
+  },
+  "homepage": "https://github.com/sterlingw/RandomQuote",
+  "devDependencies": {
+    "jasmine-core": "^2.3.4",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "phantomjs": "^1.9.18"
+  }
+}
