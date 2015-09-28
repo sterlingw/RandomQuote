@@ -5,25 +5,6 @@ function RandomQuote(element) {
     this.element = element;
 };
 
-RandomQuote.prototype.colors = [
-    "F44336",
-    "9C27B0",
-    "673AB7",
-    "E91E63",
-    "3F51B5",
-    "2196F3",
-    "03A9F4",
-    "00BCD4",
-    "009688",
-    "4CAF50",
-    "8BC34A",
-    "CDDC39",
-    "FFC107",
-    "FF9800",
-    "FF5722",
-    "607D8B"
-];
-
 RandomQuote.prototype.quotes = [
     'Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time. <span>-Thomas A. Edison</span>',
     'You are never too old to set another goal or to dream a new dream. <span>-C.S. Lewis</span>',
@@ -161,12 +142,4 @@ RandomQuote.prototype.setQuote = function() {
     this.element.innerHTML = quote;
 
     return quote;
-};
-
-/** 
- * @return
- */
-RandomQuote.prototype.setBackgroundColor = function(hex) {
-    if (typeof hex === 'undefined') throw new Error("A color hex is required.");
-    return document.body.style.background = "#" + hex;
 };

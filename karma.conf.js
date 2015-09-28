@@ -8,6 +8,7 @@ module.exports = function(config) {
             require('karma-phantomjs-launcher')
         ],
         files: [
+            'extension/BackgroundColor.js',
             'extension/RandomQuote.js',
             'test/*.spec.js'
         ]

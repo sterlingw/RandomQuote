@@ -1,9 +1,8 @@
 /***
  * 
  */
-var rq = new RandomQuote(document.getElementById('quote'));
+var randomQuote = new RandomQuote(document.getElementById('quote'));
+var backgroundColor = new BackgroundColor(document.body);
 
-rq.setQuote();
-
-// set background color
-rq.setBackgroundColor(rq.getRandom(rq.colors));
+randomQuote.setQuote();
+backgroundColor.setBackgroundColor();
