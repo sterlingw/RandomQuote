@@ -11,6 +11,7 @@ module.exports = function(config) {
             'extension/js/BackgroundColor.js',
             'extension/js/RandomQuote.js',
             'test/*.spec.js'
-        ]
+        ],
+        singleRun: true
     });
 };
