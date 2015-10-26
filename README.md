@@ -1,4 +1,4 @@
-# RandomQuote
+# RandomQuote ![](https://travis-ci.org/sterlingw/RandomQuote.svg?branch=master)
 Chrome Extension that replaces new tabs with a random quote.
 
 # Download
