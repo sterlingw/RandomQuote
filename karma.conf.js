@@ -12,6 +12,8 @@ module.exports = function(config) {
             'extension/js/RandomQuote.js',
             'extension/js/QuoteUI.js',
             'extension/js/Quotes.js',
+            'extension/js/BackgroundColorManager.js',
+            'extension/js/BackgroundColors.js',
             'test/*.spec.js'
         ],
         singleRun: true

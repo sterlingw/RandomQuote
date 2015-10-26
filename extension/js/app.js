@@ -6,8 +6,11 @@ quoteUI.init(document.getElementById('quote'));
 var quotes = Object.create(Quotes);
 quotes.init();
 
-var backgroundColor = Object.create(BackgroundColor);
-backgroundColor.init(document.body);
+var backgroundColorManager = Object.create(BackgroundColorManager);
+backgroundColorManager.init(document.body);
+
+var backgroundColors = Object.create(BackgroundColors);
+backgroundColors.init();
 
 quoteUI.setQuote(quotes.getRandomQuote());
-backgroundColor.setBackgroundColor();
+backgroundColorManager.setBackgroundColor(backgroundColors.getRandomColor());
