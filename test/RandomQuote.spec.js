@@ -4,7 +4,8 @@ describe("RandomQuote", function() {
         var element = document.createElement('div');
         element.setAttribute('div', "quote");
 
-        rq = new RandomQuote(element);
+        rq = Object.create(RandomQuote);
+        rq.init(element);
     });
 
     describe('constructor', function(){

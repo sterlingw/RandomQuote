@@ -1,7 +1,8 @@
 describe('BackgroundColor', function(){
     var background;
     beforeEach(function(){
-        background = new BackgroundColor(document.body);
+        background = Object.create(BackgroundColor);
+        background.init(document.body);
     });
 
     describe('constructor', function(){

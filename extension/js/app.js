@@ -1,8 +1,12 @@
-/***
- * 
- */
-var randomQuote = new RandomQuote(document.getElementById('quote'));
-var backgroundColor = new BackgroundColor(document.body);
+"use strict";
+
+var randomQuote = Object.create(RandomQuote);
+randomQuote.init(document.getElementById('quote'));
+
+var backgroundColor = Object.create(BackgroundColor);
+backgroundColor.init(document.body);
+
+
 
 randomQuote.setQuote();
 backgroundColor.setBackgroundColor();
