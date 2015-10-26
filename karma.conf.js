@@ -10,6 +10,8 @@ module.exports = function(config) {
         files: [
             'extension/js/BackgroundColor.js',
             'extension/js/RandomQuote.js',
+            'extension/js/QuoteUI.js',
+            'extension/js/Quotes.js',
             'test/*.spec.js'
         ],
         singleRun: true
