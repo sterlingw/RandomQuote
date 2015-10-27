@@ -1,6 +1,6 @@
 {
   "name": "RandomQuote",
-  "version": "1.0.0",
+  "version": "3.0.1",
   "description": "Chrome Extension that replaces new tabs with a random quote.",
   "main": "index.js",
   "directories": {
