@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-var QuoteUI = {
+exports.QuoteUI = {
     init: function(element){
         this.element = element;
     },

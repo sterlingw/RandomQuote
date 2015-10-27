@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-var BackgroundColorManager = {
+exports.BackgroundColorManager = {
     init: function(element){
         this.element = element;
     },

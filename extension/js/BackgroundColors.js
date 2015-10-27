@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-var BackgroundColors = {
+exports.BackgroundColors = {
     init: function(){
 
     },

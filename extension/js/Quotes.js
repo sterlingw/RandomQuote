@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-var Quotes = {
+exports.Quotes = {
     init: function(){
 
     },

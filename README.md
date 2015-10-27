@@ -7,10 +7,14 @@ Chrome Extension that replaces new tabs with a random quote.
 ## Development
 ### Running the extension
 1. `npm install`
-2. In Chrome, go to `chrome://extensions`
-3. Enable developer mode
-4. Click `Load unpacked extension`
-5. Navigate to the `extension` directory
+2. `npm build`
+3. In Chrome, go to `chrome://extensions`
+4. Enable developer mode
+5. Click `Load unpacked extension`
+6. Navigate to the `extension` directory
+
+### Building the extension
+`gulp build` or `gulp watch`
 
 ### Running tests
 `npm test`

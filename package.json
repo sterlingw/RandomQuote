@@ -7,7 +7,8 @@
     "test": "/test"
   },
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start"
+    "test": "ava",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -20,9 +21,11 @@
   },
   "homepage": "https://github.com/sterlingw/RandomQuote",
   "devDependencies": {
-    "jasmine-core": "^2.3.4",
-    "karma-jasmine": "^0.3.6",
-    "karma-phantomjs-launcher": "^0.2.1",
-    "phantomjs": "^1.9.18"
+    "ava": "^0.3.0",
+    "babelify": "^6.4.0",
+    "browserify": "^12.0.0",
+    "gulp": "^3.9.0",
+    "sinon": "^1.17.2",
+    "vinyl-source-stream": "^1.1.0"
   }
 }

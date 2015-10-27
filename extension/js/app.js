@@ -1,4 +1,8 @@
-"use strict";
+'use strict';
+import {QuoteUI} from './QuoteUI.js';
+import {Quotes} from './Quotes.js';
+import {BackgroundColorManager} from './BackgroundColorManager.js';
+import {BackgroundColors} from './BackgroundColors.js';
 
 var quoteUI = Object.create(QuoteUI);
 quoteUI.init(document.getElementById('quote'));
